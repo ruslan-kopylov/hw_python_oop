@@ -15,10 +15,10 @@ class InfoMessage:
     def show_training_info(self) -> None:
         """Информационное сообщение о тренировке."""
         print(f'Тип тренировки:{self.training_type};'
-              'Длительность: {self.duration};'
+              'Длительность: {round(self.duration, 3)};'
               'Дистанция: {round(self.distance, 3)};'
-              'Скорость: ' + round(self.speed, 3) + ';'
-              'Потрачено ккал: {self.calories}.')
+              'Скорость: {round(self.speed, 3)};'
+              'Потрачено ккал: {round(self.calories, 3)}.')
 
 
 class Training:
@@ -42,7 +42,7 @@ class Training:
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
-        mean_speed = self.get_distance(self.action) / self.duration
+        mean_speed = self.get_distance() / self.duration
         return mean_speed
 
     def get_spent_calories(self) -> float:
@@ -51,7 +51,6 @@ class Training:
         pass
 
     def show_training_info(self) -> InfoMessage:
-        return InfoMessage.show_training_info()
         """Вернуть информационное сообщение о выполненной тренировке."""
         pass
 
@@ -90,8 +89,9 @@ class SportsWalking(Training):
     def get_spent_calories(self) -> float:
         walk_kof_1 = 0.035
         walk_kof_2 = 0.029
-        spent_calories = ((walk_kof_1 * self.weight + (self.get_mean_speed**2
-                          // self.height) * walk_kof_2
+        spent_calories = ((walk_kof_1 * self.weight
+                          + (self.get_mean_speed() ** 2
+                           // self.height) * walk_kof_2
                           * self.weight) * self.duration)
         return spent_calories
 
@@ -126,13 +126,13 @@ def read_package(workout_type: str, data: list) -> Training:
     workouts = {'SWM': Swimming,
                 'RUN': Running,
                 'WLK': SportsWalking}
-    training = workouts[workout_type](Training(data))
+    training = workouts[workout_type](data)
     return training
 
 
 def main(training: Training) -> None:
     """Главная функция."""
-    info = InfoMessage(training.show_training_info())
+    info = training.show_training_info()
     print(info)
 
 
