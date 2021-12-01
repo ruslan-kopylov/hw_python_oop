@@ -15,10 +15,10 @@ class InfoMessage:
     def get_message(self):
         """Информационное сообщение о тренировке."""
         print(f'Тип тренировки:{self.training_type};'
-              'Длительность: {round(self.duration, 3)};'
-              'Дистанция: {round(self.distance, 3)};'
-              'Скорость: {round(self.speed, 3)};'
-              'Потрачено ккал: {round(self.calories, 3)}.')
+              f'Длительность: {self.duration};'
+              f'Дистанция: {self.distance};'
+              f'Скорость: {self.speed};'
+              f'Потрачено ккал: {self.calories}.')
 
 
 class Training:
@@ -49,7 +49,7 @@ class Training:
         """Получить количество затраченных калорий."""
 
         pass
-    
+
     def show_training_info(self) -> InfoMessage:
         message = InfoMessage(training, self.duration,
                               self.get_distance, self.get_mean_speed,
