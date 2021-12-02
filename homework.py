@@ -14,11 +14,12 @@ class InfoMessage:
 
     def get_message(self) -> str:
         """Информационное сообщение о тренировке."""
-        return (f'Тип тренировки: {self.training_type}; '
-                f'Длительность: {"%.3f" % self.duration}; '
-                f'Дистанция: {"%.3f" % self.distance}; '
-                f'Скорость: {"%.3f" % self.speed}; '
-                f'Потрачено ккал: {"%.3f" % self.calories}.')
+        fstring = (f'Тип тренировки: {self.training_type}; '
+                   f'Длительность: {"%.3f" % self.duration}; '
+                   f'Дистанция: {"%.3f" % self.distance}; '
+                   f'Скорость: {"%.3f" % self.speed}; '
+                   f'Потрачено ккал: {"%.3f" % self.calories}.')
+        return(fstring)
 
 
 class Training:
@@ -125,7 +126,8 @@ def read_package(workout_type: str, data: list) -> Training:
 def main(training: Training) -> None:
     """Главная функция."""
     info = training.show_training_info()
-    print(info.get_message())
+    i = info.get_message()
+    print(i)
 
 
 if __name__ == '__main__':
