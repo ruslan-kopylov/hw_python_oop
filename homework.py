@@ -50,7 +50,7 @@ class Training:
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
-        return InfoMessage(training, self.duration,
+        return InfoMessage(training.__class__.__name__, self.duration,
                            self.get_distance(), self.get_mean_speed(),
                            self.get_spent_calories())
 
@@ -63,9 +63,6 @@ class Running(Training):
                  weight: float,
                  ) -> None:
         super().__init__(action, duration, weight)
-
-    def __str__(self) -> str:
-        return 'Running'
 
     def get_spent_calories(self) -> float:
         run_kof_1 = 18
@@ -84,9 +81,6 @@ class SportsWalking(Training):
                  ) -> None:
         super().__init__(action, duration, weight)
         self.height = height
-
-    def __str__(self) -> str:
-        return 'SportsWalking'
 
     def get_spent_calories(self) -> float:
         walk_kof_1 = 0.035
@@ -111,9 +105,6 @@ class Swimming(Training):
         super().__init__(action, duration, weight)
         self.count_pool = count_pool
         self.length_pool = length_pool
-
-    def __str__(self) -> str:
-        return 'Swimming'
 
     def get_mean_speed(self) -> float:
         return (self.length_pool * self.count_pool
