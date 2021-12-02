@@ -15,9 +15,9 @@ class InfoMessage:
     def get_message(self) -> str:
         """Информационное сообщение о тренировке."""
         fstring = (f'Тип тренировки: {self.training_type}; '
-                   f'Длительность: {"%.3f" % self.duration}; '
-                   f'Дистанция: {"%.3f" % self.distance}; '
-                   f'Скорость: {"%.3f" % self.speed}; '
+                   f'Длительность: {"%.3f" % self.duration} ч.; '
+                   f'Дистанция: {"%.3f" % self.distance} км; '
+                   f'Ср. скорость: {"%.3f" % self.speed} км/ч; '
                    f'Потрачено ккал: {"%.3f" % self.calories}.')
         return(fstring)
 
