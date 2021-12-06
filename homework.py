@@ -125,11 +125,10 @@ workouts = {'SWM': Swimming,
 
 def read_package(workout_type: str, data: List[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
-    while workout_type not in workouts:
-        print('unknown work type')
-        return None
-    else:
+    if workout_type in workouts:
         return workouts[workout_type](*data)
+    else:
+        raise ValueError('Invalid workout_type')
 
 
 def main(training: Training) -> None:
@@ -147,7 +146,4 @@ if __name__ == '__main__':
 
     for workout_type, data in packages:
         training = read_package(workout_type, data)
-        if training is not None:
-            main(training)
-        else:
-            continue
+        main(training)
